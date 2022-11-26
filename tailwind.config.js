@@ -9,6 +9,10 @@ module.exports = {
   plugins: [require("@tailwindcss/line-clamp"), require("tailwind-scrollbar")],
 
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        fill: '-webkit-fill-available'
+      }
+    },
   },
 };
