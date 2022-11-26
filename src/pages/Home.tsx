@@ -1,23 +1,32 @@
-import React, { useEffect } from "react";
-import LoadingSpinner from "../components/LoadingSpinner";
-import { FetchBlogList } from "../services/blogService";
+import { useEffect, useState } from "react";
+import Bloglist from "../components/Bloglist";
+import { useModal } from "../context/ModalContext";
+import { FetchBlogList, TBlog } from "../services/blogService";
 
 export default function Home() {
+  const { handleGetModalInfo } = useModal();
+  const [postList, setPostList] = useState<TBlog[]>();
+  
   async function getPostList() {
     try {
-      const { data } = await FetchBlogList();
-      console.log("🚀 ~ file: App.tsx ~ line 10 ~ getPostList ~ data", data);
-    } catch (error) {}
+      const { data: postListData } = await FetchBlogList();
+      setPostList(postListData);
+    } catch (error) {
+      console.log("cheguei no try");
+      handleGetModalInfo(
+        "error",
+        "Cannot fetch blog list, please try again or contact the admin"
+      );
+    }
   }
-
 
   useEffect(() => {
     getPostList();
-  });
+  }, []);
 
   return (
-    <main className="mt-6">
-      <LoadingSpinner />
+    <main className="mt-6 max-w-7xl m-auto">
+      <Bloglist postList={postList} />
     </main>
   );
 }
