@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import Bloglist from "../components/Bloglist";
-import { useModal } from "../context/ModalContext";
+import { useErrorModal } from "../context/ModalContext";
 import { FetchBlogList, TBlog } from "../services/blogService";
 
 export default function Home() {
-  const { handleGetModalInfo } = useModal();
+  const { handleGetModalInfo } = useErrorModal();
   const [postList, setPostList] = useState<TBlog[]>();
   
   async function getPostList() {
@@ -25,7 +25,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="mt-6 max-w-7xl m-auto">
+    <main className="mt-6 max-w-7xl m-auto pb-9">
       <Bloglist postList={postList} />
     </main>
   );

@@ -1,5 +1,20 @@
+import ReactDOM from "react-dom";
 import React, { useState, createContext, useContext, ReactNode } from "react";
-import { Modal } from "../components/Modal";
+
+import { BisErrorCircle } from "@meronex/icons/bi";
+import { BsInfoCircleFill } from "@meronex/icons/bs";
+import { IosWarning } from "@meronex/icons/ios";
+
+const modalTypeIcon = {
+  error: <BisErrorCircle size={32} color="#ef4444" />,
+  warning: <IosWarning size={32} color="#fef9c3" />,
+  info: <BsInfoCircleFill size={32} color="#4455ef" />,
+};
+
+interface IModalInfo {
+  modalType: "error" | "warning" | "info";
+  children?: ReactNode;
+}
 
 interface ModalContextData {
   isShowModal: boolean;
@@ -8,11 +23,6 @@ interface ModalContextData {
     modalType: "error" | "warning" | "info",
     children?: ReactNode
   ) => void;
-}
-
-interface IModalInfo {
-  modalType: "error" | "warning" | "info";
-  children?: ReactNode;
 }
 
 export const ModalContext = createContext<ModalContextData>(
@@ -50,16 +60,45 @@ export function ModalContextProvider({
   return (
     <ModalContext.Provider value={data}>
       {children}
-      <Modal
-        isShowModal={isShowModal}
-        modalType={modalInfo.modalType}
-        onCloseModal={toggleModal}
-        children={modalInfo.children}
-      />
+      <>
+        {isShowModal
+          ? ReactDOM.createPortal(
+              <>
+                <div className="bg-gray-900 opacity-70 fixed left-0 top-0 w-screen h-fill overflow-auto"></div>
+                <section
+                  className="bg-white rounded px-6 pb-6 fixed m-auto top-20 left-1/3 z-10 max-w-md w-[100%] overflow-hidden"
+                  aria-modal
+                  aria-hidden
+                  tabIndex={-1}
+                  role="dialog"
+                >
+                  <div className="relative overflow-auto w-auto rounded-lg">
+                    <header className="flex items-center justify-end">
+                      <button
+                        className="text-6xl text-[#344D67]"
+                        type="button"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                        onClick={toggleModal}
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </header>
+                    <div className="flex items-center justify-center flex-col text-center">
+                      {modalTypeIcon[modalInfo.modalType]}
+                      {modalInfo.children}
+                    </div>
+                  </div>
+                </section>
+              </>,
+              document.body
+            )
+          : null}
+      </>
     </ModalContext.Provider>
   );
 }
 
-export const useModal = () => {
+export const useErrorModal = () => {
   return useContext(ModalContext);
 };
