@@ -5,6 +5,7 @@ export type TBlog = {
     id: number,
     title: string
     body: string
+    email: string
 }
 export type TUser = {
     id: number,
@@ -37,15 +38,15 @@ const blogEndpointPath = {
 }
 
 async function FetchBlogList(id?: number) {
-    const parseUrl = id ? `${blogEndpointPath.postList}/${id}` : blogEndpointPath.postList
+    const parseUrl = id ? `${blogEndpointPath.postList}/${id}/comments` : blogEndpointPath.postList
 
     return api.get<TBlog[]>(parseUrl)
 }
-async function FetchUserList(id?: number) {
+async function FetchUserInfo(id?: number) {
     const parseUrl = id ? `${blogEndpointPath.userList}/${id}` : blogEndpointPath.userList
 
-    return api.get<TUser[]>(parseUrl)
+    return api.get<TUser>(parseUrl)
 }
 
 
-export { FetchBlogList, FetchUserList }
+export { FetchBlogList, FetchUserInfo }
