@@ -24,9 +24,8 @@ export default function Bloglist({ postList }: TBlogList) {
     postId: number,
     postTitle: string,
     postBody: string,
-    userId: number
   ) {
-    setUpdateListItemState({ postBody, postId, postTitle, userId });
+    setUpdateListItemState({ postBody, postId, postTitle});
     handleTogglePost();
   }
 
@@ -37,7 +36,7 @@ export default function Bloglist({ postList }: TBlogList) {
   return hasList ? (
     <>
       <div className="flex justify-center flex-col">
-        <ul className="flex flex-wrap">
+        <ul className="flex flex-wrap justify-center">
           {postList
             ?.slice(0, ListQuantity)
             .map(({ body, id, title, userId }) => {
@@ -45,7 +44,7 @@ export default function Bloglist({ postList }: TBlogList) {
                 <li key={id}>
                   <article
                     className="bg-[#344D67] rounded max-w-sm min-h-[200px] h-[100%] max-h-[200px] m-5 p-4 cursor-pointer"
-                    onClick={() => handleOpenPost(id, title, body, userId)}
+                    onClick={() => handleOpenPost(id, title, body)}
                   >
                     <header className="bg-slate-50 flex items-start justify-center text-center">
                       {title}
@@ -70,7 +69,6 @@ export default function Bloglist({ postList }: TBlogList) {
           postId={postItemState?.postId}
           postTitle={postItemState?.postTitle}
           postBody={postItemState?.postBody}
-          userId={postItemState?.userId}
           showPostItem={showPostItem}
           handleClosePost={handleTogglePost}
         />

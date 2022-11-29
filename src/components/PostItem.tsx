@@ -8,7 +8,6 @@ export type TPost = {
   postId?: number;
   postTitle?: string;
   postBody?: string;
-  userId?: number;
 };
 
 type TPostItem = TPost & {
@@ -27,7 +26,6 @@ export default function PostItem({
   postId,
   postTitle,
   postBody,
-  userId,
   showPostItem,
   handleClosePost,
 }: TPostItem) {
@@ -71,7 +69,7 @@ export default function PostItem({
             className="bg-gray-900 opacity-70 fixed left-0 top-0 w-screen h-fill overflow-auto"
           ></div>
           <section
-            className="bg-slate-200 rounded pb-6 fixed m-auto top-20 left-[5%] sm:left-[25%] xl:left-[30%] z-10 max-w-[360px] xl:max-w-2xl w-[100%] max-h-[600px] overflow-hidden"
+            className="bg-slate-200 rounded pb-6 fixed m-auto top-20 left-[5%] sm:left-[25%] xl:left-[30%] z-10 max-w-[330px] lg:max-w-2xl w-[100%] max-h-[600px] overflow-hidden"
             aria-modal
             aria-hidden
             tabIndex={-1}
@@ -94,7 +92,7 @@ export default function PostItem({
                 <p className="border-b-2 border-b-gray-300 pb-6">{postBody}</p>
                 <p className="text-lg mt-4 font-bold">Comments</p>
                 <div>
-                  <ul className="max-h-[360px] overflow-y-scroll">
+                  <ul className="max-h-[180px] lg:max-h-[280px] overflow-y-scroll">
                     {postCommentsList ? (
                       postCommentsList?.map(
                         ({ id, author, postComment, postTitle }) => {
