@@ -69,6 +69,9 @@ Downloading dependencies:
 
   $ yarn dev
 ```
+And then click on local link: <br>
+![image](https://user-images.githubusercontent.com/47481125/204570327-98565743-9003-4ca7-bb01-defd2e5bd053.png)
+
 
 <p align=center> 
   <h6 align=center>💙 Made by 💙</h6> 
