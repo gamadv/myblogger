@@ -20,15 +20,16 @@
 <h3 align=center>
   <a href="#notebook-about">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#hammer-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#black_nib-getting-started">Getting Started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#hammer-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;
+  <a href="#black_nib-getting-started">Getting Started</a>&nbsp;&nbsp;&nbsp;
 </h3>
+
+<br>
 
 # :notebook: About
 
 Template created by Moacir Gama, Writed on Vite JS with Typescript.
 
-On this project, we have an website to list a Blog post list and their comments.
+On this project, we have a website to list Blog post and their comments.
 
 # :hammer: Technologies
 
